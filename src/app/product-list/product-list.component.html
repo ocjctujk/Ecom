@@ -1,0 +1,10 @@
+<div class="row card-deck">
+  
+    <app-product-item
+      class="col-sm-3"
+      *ngFor="let product of products; let i=index"
+      [product]="product"
+      style="text-align: center"
+    >
+    </app-product-item>
+</div>

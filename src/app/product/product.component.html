@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-5">
+      <img [src]="product.imageURL" alt="image" class="image" />
+      <h6 class="product-descryption">{{ product.descryption }}</h6>
+    </div>
+
+    <div class="col-lg-5">
+      <h1>{{ product.name }}</h1>
+      <h3 class="price">$ {{ product.price }}</h3>
+      <br /><br />
+      {{ product.long_descryption }} <br/><br/><br/><hr>
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <b>
+          <label for="quantity" class="form-label">Quantity </label><br />
+
+          <input
+            value="1"
+            type="number"
+            id="quantity"
+            name="quantity"
+            class="form-control"
+            min="1"
+            max="50"
+            required
+            ngModel
+          />
+        </b>
+        <p *ngIf="form.touched && !form.valid" class="text text-danger">
+          Please enter number between 1 and 50.
+        </p>
+        <button [disabled]="!form.valid" class="btn btn-primary" type="submit">
+          Add to cart
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

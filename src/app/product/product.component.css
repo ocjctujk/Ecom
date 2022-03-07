@@ -1,0 +1,13 @@
+.image{
+    width: 100%;
+}
+.product-descryption{
+    margin: 2rem 0 1rem 0;
+}
+.price{
+    margin-top: 3rem;
+}
+button{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
