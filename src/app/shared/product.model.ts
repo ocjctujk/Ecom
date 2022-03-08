@@ -5,7 +5,7 @@ export class Product{
     price = 0;
     imageURL = '';
     descryption = '';
-    long_descryption?= '';
+    long_descryption= '';
     sizes = [];
     special= '';
 }

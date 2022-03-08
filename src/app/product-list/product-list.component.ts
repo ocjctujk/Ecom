@@ -9,7 +9,7 @@ import { ProductService } from '../shared/product.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit,OnDestroy {
-
+  isLoading = true;
   products: Product[] = [];
   subscription: Subscription;
 
@@ -19,8 +19,12 @@ export class ProductListComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     this.subscription = this.productService.productsObservable.subscribe(data=>{
       this.products = data;
-      console.log(data);
+    });
+    this.productService.isLoading.subscribe(data=>{
+      this.isLoading = data;
     })
+    // this.productService.pushData();
+    this.productService.getData();
   }
 
   ngOnDestroy(): void {

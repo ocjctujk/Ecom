@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="col-lg-10" style="margin: auto">
+    <h3 style="text-align: center">FAQ</h3>
+    <h5 style="text-align: center">Frequently Asked Questions</h5>
+
+    <div class="col-lg-8" style="margin: auto">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let qAndA of qAndAs; let i = index"  (click)="toggle(i)">
+          <h5 style="display: inline;">{{ qAndA.question }}</h5>
+          <span
+            class="fa pull-right"
+            [ngClass]="{ 'fa-chevron-down': qAndAs[i].hidden , 'fa-chevron-up': !qAndAs[i].hidden }"
+          ></span>
+          <h6 *ngIf="!qAndA.hidden" style="margin-top: 2rem;">{{ qAndA.answer }}</h6>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,9 @@ import { FooterComponent } from './footer/footer.component';
 import { ShopComponent } from './shop/shop.component';
 import { ProductComponent } from './product/product.component';
 import { FormsModule } from '@angular/forms';
+import { CartComponent } from './cart/cart.component';
+import { FaqComponent } from './faq/faq.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,11 +25,14 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     ShopComponent,
     ProductComponent,
+    CartComponent,
+    FaqComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

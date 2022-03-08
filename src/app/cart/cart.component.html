@@ -1,0 +1,104 @@
+<div class="container" style="margin-bottom: 3rem">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 justify-content-center">
+      <h3>My Cart</h3>
+      <hr />
+      <h5 *ngIf="productQuantity.length == 0">LOL Empty</h5>
+      <div *ngFor="let product of productQuantity">
+        <img
+          class="cartImage"
+          [src]="product.product.imageURL"
+          style="cursor: pointer"
+          [routerLink]="['/product', { id: product.product.id }]"
+        />
+        <div style="display: inline-block; margin-left: 2rem">
+          <h6 style="margin-top: 1rem; display: inline-block">
+            {{ product.product.name }}
+          </h6>
+          <p style="margin-top: 1rem">${{ product.product.price }}</p>
+        </div>
+
+        <div style="display: inline-block; margin-left: 3rem">
+          <form #form="ngForm">
+            <b>
+              <input
+                type="number"
+                id="quantity"
+                name="quantity"
+                class="form-control"
+                min="1"
+                max="50"
+                [(ngModel)]="product.quantity"
+                required
+                style="width: fit-content"
+                (change)="pushData()"
+              />
+            </b>
+            <p *ngIf="form.touched && !form.valid" class="text text-danger">
+              Please enter number between 1 and 50.
+            </p>
+          </form>
+        </div>
+
+        <div style="display: inline-block; margin-left: 3rem">
+          <p class="fw-bold">
+            ${{ (product.product.price * product.quantity).toFixed(2) }}
+          </p>
+        </div>
+        <span
+          class="fa fa-close"
+          style="margin-left: 3rem; cursor: pointer"
+          (click)="onDelete(product.product.id)"
+        ></span>
+      </div>
+      <hr />
+      <h6 style="cursor: pointer" (click)="toggle('promo')">
+        <span class="fa fa-tag"></span> Enter a promo code
+      </h6>
+      <div *ngIf="showPromoCode">
+        <input
+          type="text"
+          class="form-control"
+          style="width: 70%"
+          placeholder="Enter promo code"
+        />
+      </div>
+      <hr />
+      <h6 style="cursor: pointer" (click)="toggle('note')">
+        <span class="fa fa-sticky-note-o"></span> Add a note
+      </h6>
+      <div *ngIf="showNote">
+        <textarea
+          type="textarea"
+          class="form-control"
+          placeholder="Instructions? Requests? Please Add Here"
+          rows="4"
+          style="width: 70%"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <h3>Order Summary</h3>
+      <hr />
+      <div class="clearfix">
+        <span class="float-start fw-bold">Subtotal</span>
+        <span class="float-end fw-bold">${{ getPrice().toFixed(2) }}</span>
+      </div>
+      <div class="clearfix">
+        <span class="float-start fw-bold">Shipping</span>
+        <span class="float-end fw-bold">FREE</span>
+      </div>
+      <hr />
+      <div class="clearfix">
+        <span class="float-start fw-bold fs-4">Total</span>
+        <span class="float-end fw-bold fs-4">${{ getPrice().toFixed(2) }}</span>
+      </div>
+      <button class="btn btn-dark" style="width: 100%; margin-top: 2rem">
+        Checkout
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- <button (click)="pushData()">push data to server</button> -->

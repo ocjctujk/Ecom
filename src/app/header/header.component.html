@@ -5,7 +5,9 @@
     <a
       class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"
     >
-      <h2 class="display-6" style="cursor: pointer">Maharshi Gohel</h2>
+      <h2 class="display-6" style="cursor: pointer" [routerLink]="['']">
+        Maharshi Gohel
+      </h2>
     </a>
 
     <ul
@@ -14,13 +16,20 @@
     >
       <li><a class="nav-link" [routerLink]="['shop']">Shop</a></li>
       <li><a class="nav-link" (click)="scrollTo('About')">About</a></li>
-      <li><a class="nav-link" (click)="scrollTo('FAQ')">FAQs</a></li>
+      <li><a class="nav-link" [routerLink]="['faq']">FAQs</a></li>
       <li><a class="nav-link" (click)="scrollTo('Contact')">Contact</a></li>
     </ul>
 
     <div class="col-md-3 text-end">
-      <button type="button" class="btn btn-outline-primary me-2">Login</button>
-      <button type="button" class="btn btn-primary">Sign-up</button>
+      <a
+        class="fa fa-shopping-cart"
+        style="font-size: 36px"
+        [routerLink]="['cart']"
+        routerLinkActive="active"
+      ></a>
+      <!-- <span style="color: red; margin-right: 2rem;">{{itemsInCart}}</span> -->
+      <!-- <button type="button" class="btn btn-outline-primary me-2">Login</button>
+      <button type="button" class="btn btn-primary">Sign-up</button> -->
     </div>
   </header>
 </div>

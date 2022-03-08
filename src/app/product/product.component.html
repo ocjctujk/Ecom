@@ -1,16 +1,16 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-lg-5">
+    <div class="col-lg-4">
       <img [src]="product.imageURL" alt="image" class="image" />
       <h6 class="product-descryption">{{ product.descryption }}</h6>
     </div>
 
-    <div class="col-lg-5">
+    <div class="col-lg-4">
       <h1>{{ product.name }}</h1>
-      <h3 class="price">$ {{ product.price }}</h3>
-      <br /><br />
-      {{ product.long_descryption }} <br/><br/><br/><hr>
-      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <h5 class="price">$ {{ product.price }}</h5>
+
+      <hr />
+      <form #form="ngForm">
         <b>
           <label for="quantity" class="form-label">Quantity </label><br />
 
@@ -23,16 +23,95 @@
             min="1"
             max="50"
             required
-            ngModel
+            [(ngModel)]="quantity"
+            style="width: fit-content"
           />
         </b>
         <p *ngIf="form.touched && !form.valid" class="text text-danger">
           Please enter number between 1 and 50.
         </p>
-        <button [disabled]="!form.valid" class="btn btn-primary" type="submit">
+        <button
+          [disabled]="!form.valid"
+          class="btn btn-dark"
+          type="button"
+          style="width: 100%; margin-top: 1rem"
+          (click)="onSubmit(form)"
+        >
           Add to cart
         </button>
+        <button
+          [disabled]="!form.valid"
+          class="btn btn-dark"
+          type="button"
+          style="width: 100%"
+        >
+          Buy Now
+        </button>
       </form>
+
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" (click)="toggleInfo('productInfo')">
+          <h5>
+            PRODUCT INFO
+            <span
+              class="pull-right fa"
+              [ngClass]="{
+                'fa-minus': showProductInfo,
+                'fa-plus': !showProductInfo
+              }"
+            ></span>
+          </h5>
+        </li>
+
+        <p class="list-group-item" *ngIf="showProductInfo">
+          I'm a product detail. I'm a great place to add more information about
+          your product such as sizing, material, care and cleaning instructions.
+          This is also a great space to write what makes this product special
+          and how your customers can benefit from this item.
+        </p>
+
+        <li class="list-group-item" (click)="toggleInfo('returnInfo')">
+          <h5>
+            RETURN AND REFUND POLICY
+            <span
+              class="pull-right fa"
+              [ngClass]="{
+                'fa-minus': showProductInfo,
+                'fa-plus': !showProductInfo
+              }"
+            ></span>
+          </h5>
+        </li>
+
+        <p class="list-group-item" *ngIf="showReturnInfo">
+          I’m a Return and Refund policy. I’m a great place to let your
+          customers know what to do in case they are dissatisfied with their
+          purchase. Having a straightforward refund or exchange policy is a
+          great way to build trust and reassure your customers that they can buy
+          with confidence.
+        </p>
+
+        <li class="list-group-item" (click)="toggleInfo('shippingInfo')">
+          <h5>
+            SHIPPING INFO
+            <span
+              class="pull-right fa"
+              [ngClass]="{
+                'fa-minus': showProductInfo,
+                'fa-plus': !showProductInfo
+              }"
+            ></span>
+          </h5>
+        </li>
+
+        <p class="list-group-item" *ngIf="showShippingInfo">
+          I'm a shipping policy. I'm a great place to add more information about
+          your shipping methods, packaging and cost. Providing straightforward
+          information about your shipping policy is a great way to build trust
+          and reassure your customers that they can buy from you with
+          confidence.
+        </p>
+      </ul>
     </div>
   </div>
 </div>
